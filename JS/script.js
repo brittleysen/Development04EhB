@@ -1,9 +1,6 @@
 'use strict'
 let categoryButton;
 
-function displaySelected(){
-    
-}
 
 $(document).ready(function () {
     //buttonclick
@@ -12,22 +9,17 @@ $(document).ready(function () {
 
         let result = document.getElementsByClassName('button-clicked');
         console.log(result);
-        result.forEach(displaySelected());
-        
-        //categoryButton = $(this).text();
-        //const words = categoryButton.split(' ');
-        //console.log(words[0]);
-
-        checkOnSelectedItems();
-        if ($(this).hasClass('button-clicked')) {
+        if (result.length > 0) {
             $('.item').hide();
-            $(`.${words[0]}`).show();
-            
+            for (let i = 0; i < result.length; i++) {
+                categoryButton = $(result[i]).text().split(' ');
+                $(`.${categoryButton[0]}`).show();
+                console.log(categoryButton[0]);
+            }
         } else {
             $('.item').show();
         }
     });
-
 
 
     $.ajax({
@@ -40,18 +32,16 @@ $(document).ready(function () {
                 let d = data[i][j];
 
                 let category = d.category;
-                let videoNotes = d.video_notes;
+                let videoNotes = d["video-notes"];
                 let thumbnail = d.thumbnail.url;
                 let name = d.name;
                 let uitvoerders = d.excerpt;
-                let recorded_on = d.recorded_at;
-                let duration = d.video - length;
+                let recorded_on = d["recorded-at"];
+                let duration = d["video-length"];
                 let videoUrl = 0;
                 let genre = d["genre-v2"];
                 console.log(genre);
-                //let videoUrl = d.link_to_video.url;
-                //let description = d.link_to_video.metadata.description;
-                //<img src=${thumbnail} class="thumbnail">
+    
                 console.log(category);
                 $('.vue').append(
                     `
@@ -85,23 +75,21 @@ $(document).ready(function () {
             }
         }
     });
-
-
-    function checkOnSelectedItems() {
-        let count = 0;
-        for (let i = 0; i <= 12; i++) {
-            if ($('#button' + i).hasClass('button-clicked') == true) {
-                count += 1;
-                //$(`.${words[0]}`).show();
-            } else {
-                count = count;
-                //$(`.${words[0]}`).hide();
-            }
-            //console.log('#button' + counter);
-
-        }
-        console.log(count);
-        return count;
-    }
-
 });
+
+function checkOnSelectedItems() {
+    let count = 0;
+    for (let i = 0; i <= 12; i++) {
+        if ($('#button' + i).hasClass('button-clicked') == true) {
+            count += 1;
+            //$(`.${words[0]}`).show();
+        } else {
+            count = count;
+            //$(`.${words[0]}`).hide();
+        }
+        //console.log('#button' + counter);
+
+    }
+    console.log(count);
+    return count;
+};

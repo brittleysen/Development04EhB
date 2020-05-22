@@ -233,6 +233,7 @@ div.item{
 }
 
 img{
+    max-width: 640px;
     display: inline-block;
     position: absolute;
     width: 100%;
