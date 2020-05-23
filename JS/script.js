@@ -1,23 +1,87 @@
 'use strict'
+
 let categoryButton;
+let generalFilter = [];
+let genreClickedArray = [];
+let result;
+
 
 
 $(document).ready(function () {
+
     //buttonclick
     $('.filter').on('click', function () {
-        $(this).toggleClass('button-clicked');
 
-        let result = document.getElementsByClassName('button-clicked');
-        console.log(result);
-        if (result.length > 0) {
-            $('.item').hide();
-            for (let i = 0; i < result.length; i++) {
-                categoryButton = $(result[i]).text().split(' ');
-                $(`.${categoryButton[0]}`).show();
-                console.log(categoryButton[0]);
+        let items = document.getElementsByClassName('item');
+        let doelgroepClickedArray = [];
+
+        $(this).toggleClass('button-clicked');
+        result = document.getElementsByClassName('button-clicked');
+
+        for (let i = 0; i < result.length; i++) {
+            categoryButton = $(result[i]).text().split(' ');
+            if (categoryButton[0] != 'volwassenen' && categoryButton[0] != 'familie') {
+                if (genreClickedArray.includes(categoryButton[0]) == false) {
+                    genreClickedArray.push(categoryButton[0]);
+                }
+            } else {
+                if (doelgroepClickedArray.includes(categoryButton[0]) == false) {
+                    doelgroepClickedArray.push(categoryButton[0]);
+                }
+
             }
-        } else {
-            $('.item').show();
+
+        }
+
+        if ($(this).hasClass('button-clicked') == false) {
+            let getText = $(this).text().split(' ');
+            let index = genreClickedArray.indexOf(getText[0]);
+            genreClickedArray.splice(index, 1);
+        }
+
+
+        $('.item').hide();
+        let genres = [];
+        let doelgroepen = [];
+        let allGenresDoelgroepen = [];
+        items = Array.prototype.slice.call(items).values();
+
+
+        for (const item of items) {
+            if (doelgroepClickedArray.length > 0 && genreClickedArray.length > 0) {
+                for (const doelgroep of doelgroepClickedArray.values()) {
+                    for (const genre of genreClickedArray.values()) {
+                        if ($(item).hasClass(doelgroep) == true && $(item).hasClass(genre) == true) {
+                            allGenresDoelgroepen.push(item);
+                        }
+                        for (const element of allGenresDoelgroepen) {
+                            $(element).show();
+                        }
+                    }
+
+                }
+            } else if (doelgroepClickedArray.length > 0) {
+                for (const doelgroep of doelgroepClickedArray.values()) {
+                    if ($(item).hasClass(doelgroep) == true) {
+                        doelgroepen.push(item);
+                    }
+                    for (const element of doelgroepen) {
+                        $(element).show();
+                    }
+                }
+
+            } else if (genreClickedArray.length > 0) {
+                for (const genre of genreClickedArray.values()) {
+                    if ($(item).hasClass(genre) == true) {
+                        genres.push(item);
+                    }
+                    for (const element of genres) {
+                        $(element).show();
+                    }
+                } 
+            } else {
+                $('.item').show();
+            }
         }
     });
 
@@ -40,9 +104,11 @@ $(document).ready(function () {
                 let duration = d["video-length"];
                 let videoUrl = 0;
                 let genre = d["genre-v2"];
-                console.log(genre);
-    
-                console.log(category);
+
+                if (generalFilter.includes(genre) == false) {
+                    generalFilter.push(genre);
+                }
+
                 $('.vue').append(
                     `
                     <div class="item ${category} ${genre}">
@@ -71,11 +137,16 @@ $(document).ready(function () {
                         </a> 
                     </div>
                 `);
-                console.log(d);
             }
         }
     });
 });
+
+function fillArrayButtonClicked() {
+    categoryButton = $(result[i]).text().split(' ');
+    genreClickedArray.push(categoryButton[0]);
+    console.log(genreClickedArray);
+}
 
 function checkOnSelectedItems() {
     let count = 0;
@@ -92,4 +163,8 @@ function checkOnSelectedItems() {
     }
     console.log(count);
     return count;
-};
+}
+
+function showItems() {
+
+}
