@@ -9,7 +9,7 @@ Wanneer de HTML en CSS klaar zijn begin ik met de data uit de .JSON file binnen 
 
 Voor de filter zelf focus ik mij eerst op de aanklikbare knoppen (doelgroepen en genre). Eerst zal ik proberen deze allemaal op dezelfde manier te laten werken. Daarna pas ga ik onderscheid maken tussen de verschillende knoppen (doelgroep vs genre). Dit zodat ik een buffer inbouw voor mezelf. 
 
-Als laatste stap bekijk ik de zoekbalk, zit zou het vlotst moeten gaan. Dit maak ik met een keyup en een nieuwe ajax call bij elke nieuwe keyup. 
+Als laatste stap bekijk ik de zoekbalk, dit zou het vlotst moeten gaan. Dit maak ik met een keyup en een nieuwe ajax call bij elke nieuwe keyup. 
 
 
 
