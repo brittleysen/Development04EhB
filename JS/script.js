@@ -162,7 +162,7 @@ $(document).ready(function () {
     //functionaliteit van de zoekbalk
     $('.search-bar').keyup(function(){ //bij keyup in zoekbalk werkt deze code
         //haal string uit de ingegeven tekst van de zoekbalk
-        let fieldInputText = $('.search-bar').val();
+        let fieldInputText = $('.search-bar').val().toLowerCase();
         //maak de div leeg waar de voorgestelde zoekopdrachten inkomen
         $('.horizontal-search-filter').empty();
       
@@ -185,8 +185,9 @@ $(document).ready(function () {
                    
                     // wanneer de ingegeven tekst van de zoekbalk
                     // ook dezelfde lettervolgorde als de titel van de voorstelling bevat
-                    //wordt het volgende getoont:
-                    if(name.includes(fieldInputText) == true){
+                    //wordt het volgende getoont
+                    let nameLower = name.toLowerCase();
+                    if(nameLower.includes(fieldInputText) == true){
                         //aan de div die we eerst leeg maken worden nu alle gerelateerde
                         //zoekresultaten getoont
                         $('.horizontal-search-filter').append(`
