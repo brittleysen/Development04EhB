@@ -85,7 +85,6 @@ $(document).ready(function () {
         }
     });
 
-
     $.ajax({
         url: '../entries.json',
         method: 'GET',
@@ -139,6 +138,55 @@ $(document).ready(function () {
                 `);
             }
         }
+    });
+
+    $('.search-bar').keyup(function(){
+        let fieldInputText = $('.search-bar').val();
+        $('.horizontal-search-filter').empty();
+        console.log(fieldInputText);
+        $.ajax({
+            url: '../entries.json',
+            method: 'GET',
+            dataType: 'json'
+        }).done(function(data){
+            //console.log(data);
+            for(let i in data){
+                for(let j in data[i]){
+                    console.log(data[i][j]);
+                    let k = data[i][j];
+                    let name = k.name;
+                    let productiehuis = k.excerpt;
+                    let opnameplaats = k["recorded-at"];
+                    let image = k.thumbnail.url;
+                    console.log(name, productiehuis, opnameplaats);
+
+                    if(name.includes(fieldInputText) == true){
+                        
+                        $('.horizontal-search-filter').append(`
+                            <div class="horizontal-item">
+                                <a href="#" class="video-card-horizontal">
+                                    <div class="card-horizontal-image">
+                                        <img scr="${image}" class="g-image">
+                                        <div class="card-horizontal-image-inner">
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h3>${name}</h3>
+                                        <p>${productiehuis}</p>
+                                        <p>${opnameplaats}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        `)
+                    }
+                    if(fieldInputText == ''){
+                        $('.horizontal-search-filter').empty();
+                    }
+
+                }
+            }
+            console.log(fieldInputText);
+        });
     });
 });
 
