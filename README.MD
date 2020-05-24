@@ -1,25 +1,16 @@
-# Development 4: Opdracht Werkstuk
+# Development 4: Opdracht Werkstuk Britt Leysen
 
-## Short
-Podiumaanhuis.be is a new website that offers full video's of theater pieces. It's created very quickly using Webflow, a  very simple website creating platform. Now the organisation wants to recreate the app from scratch, using HTML, CSS and Javascript.
+## aanpak
+De main focus is een werkende filter. 
 
-One feature is the option to filter the video entries based on genres and audience. Using the JSON fetch the entries, show them on the page, and recreate the filter like it is presented on podiumaanhuis.be.
+Om het voor mezelf structuur te geven begin ik met een HTML en CSS file die helemaal zijn opgemaakt in de stijl van de bestaande website. Dit ga ik doen met dummiedata. Wanneer ik ga testen later, kan ik visueel zien wat ik aan het doen ben. 
 
-## Requirements
-- Write out your approach in the readme.md file. Do a functional analysis of the existing app. Plan your data, functions and the flow of your app.
-- It must work. This is the most important requirement. Don't worry too much about clean code or functional programming in the beginning. Create the app, and iterate.
-- Push your iterations to github.
-- Try to make your code as functional & pure as possible.
-- Try to avoid side effects as much as possible.
-- Write tests for at least 2 functions
-- Show the result on the webpage
-- COMMENTS COMMENTS COMMENTS
+Wanneer de HTML en CSS klaar zijn begin ik met de data uit de .JSON file binnen te trekken met een ajax call.
 
-## Resources
-https://www.podiumaanhuis.be/
+Voor de filter zelf focus ik mij eerst op de aanklikbare knoppen (doelgroepen en genre). Eerst zal ik proberen deze allemaal op dezelfde manier te laten werken. Daarna pas ga ik onderscheid maken tussen de verschillende knoppen (doelgroep vs genre). Dit zodat ik een buffer inbouw voor mezelf. 
 
-https://github.com/pmcp/ehbdev4werkstuk
+Als laatste stap bekijk ik de zoekbalk, zit zou het vlotst moeten gaan. Dit maak ik met een keyup en een nieuwe ajax call bij elke nieuwe keyup. 
 
-https://docs.google.com/presentation/d/1tlhfJPTmw0MP4kfKSdszo4bUSKwG9xRcuSmzhbkiNaw/edit?usp=sharing
+
 
  
