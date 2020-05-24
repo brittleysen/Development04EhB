@@ -186,7 +186,7 @@ $(document).ready(function () {
                     // wanneer de ingegeven tekst van de zoekbalk
                     // ook dezelfde lettervolgorde als de titel van de voorstelling bevat
                     //wordt het volgende getoont
-                    let nameLower = name.toLowerCase();
+                    let nameLower = name.toLowerCase(); //zodat zoeken ook werkt zonder hoofdlettergebruik
                     if(nameLower.includes(fieldInputText) == true){
                         //aan de div die we eerst leeg maken worden nu alle gerelateerde
                         //zoekresultaten getoont
